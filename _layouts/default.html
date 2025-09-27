@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <style>
+        :root {
+            --bg-color: #f9f9f9;
+            --container-bg: white;
+            --text-color: #333;
+            --header-color: #2c3e50;
+            --subtitle-color: #7f8c8d;
+            --border-color: #eee;
+            --h2-color: #34495e;
+            --h3-color: #2c3e50;
+            --h2-border: #3498db;
+            --nav-color: #3498db;
+            --nav-border: #3498db;
+            --nav-hover-bg: #3498db;
+            --nav-hover-text: white;
+            --nav-disabled-color: #bdc3c7;
+            --nav-disabled-border: #bdc3c7;
+            --toc-bg: #f8f9fa;
+            --toc-link-color: #3498db;
+            --thought-questions-bg: #e8f4f8;
+            --thought-questions-h3: #2c3e50;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --container-bg: #2d2d2d;
+            --text-color: #e0e0e0;
+            --header-color: #f0f0f0;
+            --subtitle-color: #b0b0b0;
+            --border-color: #444;
+            --h2-color: #4a9eff;
+            --h3-color: #e0e0e0;
+            --h2-border: #4a9eff;
+            --nav-color: #4a9eff;
+            --nav-border: #4a9eff;
+            --nav-hover-bg: #4a9eff;
+            --nav-hover-text: white;
+            --nav-disabled-color: #666;
+            --nav-disabled-border: #666;
+            --toc-bg: #3a3a3a;
+            --toc-link-color: #4a9eff;
+            --thought-questions-bg: #2a4158;
+            --thought-questions-h3: #e0e0e0;
+        }
+
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--container-bg);
+            min-height: 100vh;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            position: relative;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            width: 60px;
+            height: 30px;
+            background-color: #ccc;
+            border-radius: 15px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            padding: 2px;
+        }
+
+        .theme-toggle[data-theme="dark"] {
+            background-color: #4a9eff;
+        }
+
+        .theme-toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 26px;
+            height: 26px;
+            background-color: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .theme-toggle[data-theme="dark"] .theme-toggle-slider {
+            transform: translateX(30px);
+        }
+
+        .theme-toggle-icon {
+            position: absolute;
+            font-size: 14px;
+            transition: opacity 0.3s ease;
+        }
+
+        .theme-toggle-icon.moon {
+            opacity: 1;
+        }
+
+        .theme-toggle-icon.sun {
+            opacity: 0;
+        }
+
+        .theme-toggle[data-theme="dark"] .theme-toggle-icon.moon {
+            opacity: 0;
+        }
+
+        .theme-toggle[data-theme="dark"] .theme-toggle-icon.sun {
+            opacity: 1;
+        }
+        h1 {
+            color: var(--header-color);
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: var(--subtitle-color);
+            font-size: 1.1em;
+        }
+        .content {
+            margin-bottom: 60px;
+        }
+        .chapter-content {
+            margin-bottom: 40px;
+        }
+        .chapter-content h2 {
+            color: var(--h2-color);
+            border-bottom: 2px solid var(--h2-border);
+            padding-bottom: 10px;
+        }
+        .chapter-content h3 {
+            color: var(--h3-color);
+            margin-top: 30px;
+        }
+        .chapter-content p {
+            margin-bottom: 16px;
+            text-align: justify;
+        }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-top: 2px solid var(--border-color);
+            margin-top: 40px;
+        }
+        .nav-link {
+            flex: 1;
+            text-align: center;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: var(--nav-color);
+            border: 1px solid var(--nav-border);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background-color: var(--nav-hover-bg);
+            color: var(--nav-hover-text);
+        }
+        .nav-link.previous {
+            margin-right: 10px;
+        }
+        .nav-link.next {
+            margin-left: 10px;
+        }
+        .nav-link.disabled {
+            color: var(--nav-disabled-color);
+            border-color: var(--nav-disabled-border);
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .nav-link.disabled:hover {
+            background-color: transparent;
+            color: var(--nav-disabled-color);
+        }
+        .toc {
+            background-color: var(--toc-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .toc h3 {
+            margin-top: 0;
+            color: var(--h3-color);
+        }
+        .toc ul {
+            list-style: none;
+            padding: 0;
+        }
+        .toc li {
+            margin-bottom: 8px;
+        }
+        .toc a {
+            color: var(--toc-link-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        audio {
+            display: block;
+            margin: 20px 0;
+            max-width: 100%;
+        }
+        .thought-questions {
+            background-color: var(--thought-questions-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        .thought-questions h3 {
+            color: var(--thought-questions-h3);
+            margin-top: 0;
+        }
+        .thought-questions ul {
+            padding-left: 20px;
+        }
+        @media (max-width: 600px) {
+            .navigation {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .nav-link {
+                width: 100%;
+                margin: 0 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="theme-toggle" id="theme-toggle" aria-label="切换主题" data-theme="light">
+                <div class="theme-toggle-slider">
+                    <span class="theme-toggle-icon moon">🌙</span>
+                    <span class="theme-toggle-icon sun">☀️</span>
+                </div>
+            </button>
+            <h1>{{ site.title }}</h1>
+            <p class="subtitle">{{ site.description }}</p>
+        </header>
+
+        <div class="content">
+            {{ content }}
+        </div>
+
+        {% if site.show_navigation and page.title %}
+        {% include navigation.html %}
+        {% endif %}
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to light
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        updateThemeToggle(currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            html.setAttribute('data-theme', newTheme);
+            themeToggle.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeToggle(newTheme);
+        });
+
+        function updateThemeToggle(theme) {
+            themeToggle.setAttribute('data-theme', theme);
+            themeToggle.setAttribute('aria-label', theme === 'light' ? '切换到深色主题' : '切换到浅色主题');
+        }
+    </script>
+</body>
+</html>

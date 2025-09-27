@@ -1,0 +1,60 @@
+title: 法律趣史：30个改变世界的法律故事
+description: 一本写给法律小白的趣味历史书，用最简单有趣的方式讲述改变世界的法律故事
+url: ""
+baseurl: ""
+markdown: kramdown
+highlighter: rouge
+permalink: /:title/
+
+# Navigation settings
+show_navigation: true
+
+# Chapter ordering
+chapters:
+  - 第1章_汉谟拉比法典
+  - 第2章_古罗马十二铜表法
+  - 第3章_中国秦律
+  - 第4章_大宪章
+  - 第5章_权利法案
+  - 第6章_拿破仑法典
+  - 第7章_马伯里诉麦迪逊案
+  - 第8章_斯科特案
+  - 第9章_米兰达警告
+  - 第10章_纽伦堡审判
+  - 第11章_世界人权宣言
+  - 第12章_反垄断法
+  - 第13章_环境保护法
+  - 第14章_数据隐私法
+  - 第15章_人工智能法律
+  - 第16章_网络安全法
+  - 第17章_版权法
+  - 第18章_社交媒体法律
+  - 第19章_妇女权利法
+  - 第20章_反歧视法
+  - 第21章_同性婚姻合法化
+  - 第22章_破产法
+  - 第23章_证券法
+  - 第24章_消费者权益保护法
+  - 第25章_无罪推定
+  - 第26章_正当防卫
+  - 第27章_陪审团制度
+  - 第28章_海商法
+  - 第29章_外交豁免权
+  - 第30章_国际刑法
+
+# Plugin settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .bundle
+  - .sass-cache
+  - .jekyll-cache
+  - gemfiles
+  - CLAUDE.md

@@ -1,0 +1,57 @@
+<div class="navigation">
+    {% assign current_chapter = page.title %}
+    {% assign chapters = site.chapters %}
+
+    {% for chapter in chapters %}
+        {% assign chapter_file = chapter | append: '.md' %}
+        {% assign chapter_page = site.pages | where: 'name', chapter_file | first %}
+
+        {% if chapter_page and chapter_page.title == current_chapter %}
+            {% assign current_index = forloop.index0 %}
+            {% break %}
+        {% endif %}
+    {% endfor %}
+
+    {% if current_index %}
+        {% assign prev_index = current_index | minus: 1 %}
+        {% assign next_index = current_index | plus: 1 %}
+
+        {% if prev_index >= 0 %}
+            {% assign prev_chapter = chapters[prev_index] %}
+            {% assign prev_file = prev_chapter | append: '.md' %}
+            {% assign prev_page = site.pages | where: 'name', prev_file | first %}
+
+            {% if prev_page %}
+                {% assign prev_short_title = prev_page.title | split: " - " | first %}
+                <a href="{{ prev_page.url | relative_url }}" class="nav-link previous">
+                    ← {{ prev_short_title }}
+                </a>
+            {% else %}
+                <span class="nav-link previous disabled">← 上一章</span>
+            {% endif %}
+        {% else %}
+            <span class="nav-link previous disabled">← 上一章</span>
+        {% endif %}
+
+        <span class="nav-link" style="border: none; color: #7f8c8d; cursor: default;">
+            {{ current_index | plus: 1 }} / {{ chapters.size }}
+        </span>
+
+        {% if next_index < chapters.size %}
+            {% assign next_chapter = chapters[next_index] %}
+            {% assign next_file = next_chapter | append: '.md' %}
+            {% assign next_page = site.pages | where: 'name', next_file | first %}
+
+            {% if next_page %}
+                {% assign next_short_title = next_page.title | split: " - " | first %}
+                <a href="{{ next_page.url | relative_url }}" class="nav-link next">
+                    {{ next_short_title }} →
+                </a>
+            {% else %}
+                <span class="nav-link next disabled">下一章 →</span>
+            {% endif %}
+        {% else %}
+            <span class="nav-link next disabled">下一章 →</span>
+        {% endif %}
+    {% endif %}
+</div>
