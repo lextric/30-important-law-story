@@ -1,7 +1,7 @@
 title: 法律趣史：30个改变世界的法律故事
 description: 一本写给法律小白的趣味历史书，用最简单有趣的方式讲述改变世界的法律故事
-url: ""
-baseurl: ""
+url: "https://lextric.github.io"
+baseurl: "/30-important-law-story"
 markdown: kramdown
 highlighter: rouge
 permalink: /:title/
