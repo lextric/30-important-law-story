@@ -269,6 +269,44 @@
         .thought-questions ul {
             padding-left: 20px;
         }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--toc-bg);
+            font-weight: 600;
+            color: var(--h3-color);
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--toc-bg);
+        }
+
+        tr:hover {
+            background-color: var(--thought-questions-bg);
+        }
+
+        @media (max-width: 600px) {
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
         @media (max-width: 600px) {
             .navigation {
                 flex-direction: column;
