@@ -57,11 +57,12 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             margin: 0;
             padding: 0;
             color: var(--text-color);
             background-color: var(--bg-color);
+            font-size: 16px;
         }
         .container {
             max-width: 800px;
@@ -179,15 +180,24 @@
         .chapter-content h2 {
             color: var(--h2-color);
             border-bottom: 2px solid var(--h2-border);
-            padding-bottom: 10px;
+            padding-bottom: 12px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            font-weight: 600;
         }
         .chapter-content h3 {
             color: var(--h3-color);
-            margin-top: 30px;
+            margin-top: 32px;
+            margin-bottom: 16px;
+            font-size: 1.3em;
+            font-weight: 600;
         }
         .chapter-content p {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             text-align: justify;
+            line-height: 1.8;
+            font-size: 16px;
         }
         .navigation {
             display: flex;
@@ -276,6 +286,29 @@
             padding-left: 20px;
         }
 
+        /* Improved list and text readability */
+        ul, ol {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Better text spacing for Chinese content */
+        .chapter-content strong {
+            font-weight: 600;
+            color: var(--h3-color);
+        }
+
+        .chapter-content em {
+            font-style: normal;
+            background-color: var(--thought-questions-bg);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
         /* Table styles */
         table {
             width: 100%;
@@ -350,18 +383,22 @@
 
     .chapter-content h2 {
         font-size: 1.5em;
-        margin-top: 25px;
+        margin-top: 30px;
+        margin-bottom: 16px;
+        padding-bottom: 10px;
     }
 
     .chapter-content h3 {
-        font-size: 1.2em;
-        margin-top: 20px;
+        font-size: 1.25em;
+        margin-top: 25px;
+        margin-bottom: 14px;
     }
 
     .chapter-content p {
-        font-size: 16px;
-        line-height: 1.6;
-        margin-bottom: 14px;
+        font-size: 17px;
+        line-height: 1.75;
+        margin-bottom: 18px;
+        text-align: justify;
     }
 
     .thought-questions {
@@ -417,7 +454,9 @@
     }
 
     .chapter-content p {
-        font-size: 15px;
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 16px;
     }
 
     .chapter-content h2 {
