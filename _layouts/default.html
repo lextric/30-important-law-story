@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>{{ page.title | default: site.title }}</title>
     <meta name="description" content="{{ page.description | default: site.description }}">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
@@ -106,6 +106,7 @@
             display: flex;
             align-items: center;
             padding: 2px;
+            touch-action: manipulation;
         }
 
         .theme-toggle[data-theme="dark"] {
@@ -205,6 +206,11 @@
             border: 1px solid var(--nav-border);
             border-radius: 5px;
             transition: all 0.3s ease;
+            touch-action: manipulation;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .nav-link:hover {
             background-color: var(--nav-hover-bg);
@@ -307,16 +313,177 @@
                 padding: 8px;
             }
         }
-        @media (max-width: 600px) {
-            .navigation {
-                flex-direction: column;
-                gap: 10px;
-            }
-            .nav-link {
-                width: 100%;
-                margin: 0 !important;
-            }
-        }
+        /* Mobile-first responsive design */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 15px;
+        margin: 0;
+    }
+
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 8px;
+    }
+
+    .subtitle {
+        font-size: 1em;
+    }
+
+    .toc {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .chapter-content {
+        margin-bottom: 30px;
+    }
+
+    .chapter-content h2 {
+        font-size: 1.5em;
+        margin-top: 25px;
+    }
+
+    .chapter-content h3 {
+        font-size: 1.2em;
+        margin-top: 20px;
+    }
+
+    .chapter-content p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 14px;
+    }
+
+    .thought-questions {
+        padding: 15px;
+        margin-top: 25px;
+    }
+
+    .thought-questions ul {
+        padding-left: 15px;
+    }
+
+    .navigation {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+        margin-top: 30px;
+    }
+
+    .nav-link {
+        width: 100%;
+        margin: 0 !important;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    /* Mobile table improvements */
+    table {
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 8px 6px;
+    }
+
+    /* Mobile audio player */
+    audio {
+        margin: 15px 0;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 12px;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+
+    .subtitle {
+        font-size: 0.95em;
+    }
+
+    .chapter-content p {
+        font-size: 15px;
+    }
+
+    .chapter-content h2 {
+        font-size: 1.4em;
+    }
+
+    .chapter-content h3 {
+        font-size: 1.1em;
+    }
+
+    .toc {
+        padding: 12px;
+    }
+
+    .thought-questions {
+        padding: 12px;
+    }
+
+    .navigation {
+        padding: 12px;
+    }
+
+    .nav-link {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    /* Smaller mobile table improvements */
+    table {
+        font-size: 12px;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th, td {
+        padding: 6px 4px;
+    }
+
+    /* Mobile theme toggle */
+    .theme-toggle {
+        width: 50px;
+        height: 25px;
+    }
+
+    .theme-toggle-slider {
+        width: 21px;
+        height: 21px;
+    }
+
+    .theme-toggle[data-theme="dark"] .theme-toggle-slider {
+        transform: translateX(25px);
+    }
+}
+
+/* Large mobile devices */
+@media (max-width: 600px) {
+    .navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .nav-link {
+        width: 100%;
+        margin: 0 !important;
+    }
+}
     </style>
 </head>
 <body>
