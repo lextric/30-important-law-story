@@ -42,9 +42,6 @@ jobs:
           # Optional: Trigger when specific user is assigned to an issue
           # assignee_trigger: "claude-bot"
 
-          claude_args: |
-            --model glm-4.5
-
           # Optional: Configure Claude's behavior with CLI arguments
           # claude_args: |
           #   --model claude-opus-4-1-20250805
@@ -52,9 +49,10 @@ jobs:
           #   --allowedTools "Bash(npm install),Bash(npm run build),Bash(npm run test:*),Bash(npm run lint:*)"
           #   --system-prompt "Follow our coding standards. Ensure all new code has tests. Use TypeScript for new files."
 
-          settings: |
-            {
-              "env": {
-                "ANTHROPIC_BASE_URL": "https://api.z.ai/api/anthropic"
-              }
-            }
+          # Optional: Advanced settings configuration
+          # settings: |
+          #   {
+          #     "env": {
+          #       "NODE_ENV": "test"
+          #     }
+          #   }
